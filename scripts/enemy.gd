@@ -40,4 +40,8 @@ func _on_player_update_world() -> void:
 		if can_move_to(target) and (screen_target.x < screen_coords.x and 
 		screen_target.x > 0.0 and screen_target.y < screen_coords.y and screen_target.y > 0.0):
 			position = target
+	
+
+	
+	
 			

@@ -18,7 +18,7 @@ func _on_body_entered(body: Node2D) -> void:
 	beam_collide.emit()
 	hide()
 	if body.is_in_group("enemy"):
-		get_node("CollisionShape2D").disabled = true
+		get_node("CollisionShape2D").set_deferred("disabled",true)
 		var sprite = body.get_node("AnimatedSprite2D")
 		sprite.animation = "death"
 		sprite.play()
@@ -30,5 +30,6 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	
 	beam_collide.emit()
 	hide()# Replace with function body.

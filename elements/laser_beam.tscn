@@ -12,8 +12,8 @@ script = ExtResource("1_l3aic")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2105869921]
-position = Vector2(18.75, 28.5)
-scale = Vector2(0.47656253, 0.640625)
+position = Vector2(26.970997, 28.5)
+scale = Vector2(1, 0.999)
 texture = ExtResource("2_l3aic")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=960585091]

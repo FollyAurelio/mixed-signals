@@ -2,7 +2,24 @@
 
 [ext_resource type="Texture2D" uid="uid://dqrwaxiyulfjw" path="res://assets/graphics/bot-Sheet.png" id="1_5urir"]
 [ext_resource type="Script" uid="uid://c3cpnmoqcbai0" path="res://scripts/player.gd" id="1_sf2tj"]
+[ext_resource type="Texture2D" uid="uid://qaq3x2jm0koo" path="res://assets/graphics/enemy_death-Sheet.png" id="2_b6vef"]
 [ext_resource type="PackedScene" uid="uid://don18tdhgxvtm" path="res://elements/laser_beam.tscn" id="3_veuqq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8wk1"]
+atlas = ExtResource("2_b6vef")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpvne"]
+atlas = ExtResource("2_b6vef")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhma8"]
+atlas = ExtResource("2_b6vef")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8f34y"]
+atlas = ExtResource("2_b6vef")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sf2tj"]
 atlas = ExtResource("1_5urir")
@@ -46,6 +63,23 @@ region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sh265"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8wk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpvne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhma8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8f34y")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sf2tj")
@@ -103,24 +137,28 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sf2tj"]
-size = Vector2(65, 70)
+size = Vector2(33, 37)
 
 [node name="Player" type="CharacterBody2D" unique_id=1419232070]
-position = Vector2(-6, 4)
 collision_layer = 4
 script = ExtResource("1_sf2tj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1808145420]
 position = Vector2(34, 35)
 sprite_frames = SubResource("SpriteFrames_sh265")
-animation = &"idle_4"
-frame_progress = 0.015239776
+animation = &"death"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=696608675]
-position = Vector2(36.5, 33)
+[node name="Area2D" type="Area2D" parent="." unique_id=1195109986]
+position = Vector2(33.5, 35)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=696608675]
+position = Vector2(-3, 0.5)
 shape = SubResource("RectangleShape2D_sf2tj")
 
 [node name="LaserBeam" parent="." unique_id=564015786 instance=ExtResource("3_veuqq")]
 collision_layer = 2
 
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="beam_collide" from="LaserBeam" to="." method="_on_laser_beam_beam_collide"]

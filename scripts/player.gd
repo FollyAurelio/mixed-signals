@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal update_world
 
 var beam_shot = false
+var health = 4
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -77,7 +78,28 @@ func _physics_process(delta: float) -> void:
 		if can_move_to(target):
 			position = target
 			
-	
+func flash():
+	$AnimatedSprite2D.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	$AnimatedSprite2D.modulate = Color.WHITE
 
 func _on_laser_beam_beam_collide() -> void:
 	beam_shot = false
+
+func handle_health_animation() -> void:
+	$AnimatedSprite2D.animation = "idle_" + str(health)
+
+func handle_game_over() -> void:
+	#Do some hub stuff probably
+	$AnimatedSprite2D.animation = "death"
+	await $AnimatedSprite2D.animation_finished
+	hide()
+	set_physics_process(false)
+	
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		health -= 1
+		flash()
+		handle_health_animation()
+		if health <= 0:
+			handle_game_over()
