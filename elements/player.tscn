@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dqrwaxiyulfjw" path="res://assets/graphics/bot-Sheet.png" id="1_5urir"]
 [ext_resource type="Script" uid="uid://c3cpnmoqcbai0" path="res://scripts/player.gd" id="1_sf2tj"]
+[ext_resource type="PackedScene" uid="uid://don18tdhgxvtm" path="res://elements/laser_beam.tscn" id="3_veuqq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sf2tj"]
 atlas = ExtResource("1_5urir")
@@ -101,12 +102,25 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sf2tj"]
+size = Vector2(65, 70)
+
 [node name="Player" type="CharacterBody2D" unique_id=1419232070]
+position = Vector2(-6, 4)
+collision_layer = 4
 script = ExtResource("1_sf2tj")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1808145420]
 position = Vector2(34, 35)
 sprite_frames = SubResource("SpriteFrames_sh265")
 animation = &"idle_4"
 frame_progress = 0.015239776
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=696608675]
+position = Vector2(36.5, 33)
+shape = SubResource("RectangleShape2D_sf2tj")
+
+[node name="LaserBeam" parent="." unique_id=564015786 instance=ExtResource("3_veuqq")]
+collision_layer = 2
+
+[connection signal="beam_collide" from="LaserBeam" to="." method="_on_laser_beam_beam_collide"]

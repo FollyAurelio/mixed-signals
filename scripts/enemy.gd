@@ -5,6 +5,7 @@ var screen_coords
 
 func _ready() -> void:
 	var mob_types = Array($AnimatedSprite2D.sprite_frames.get_animation_names())
+	mob_types.remove_at(0)
 	$AnimatedSprite2D.animation = mob_types.pick_random()
 	screen_coords = get_viewport_rect().size
 	$AnimatedSprite2D.play() # Replace with function body.

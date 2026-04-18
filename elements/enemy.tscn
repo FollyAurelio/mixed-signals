@@ -2,7 +2,25 @@
 
 [ext_resource type="Texture2D" uid="uid://1i2qqkwf4edy" path="res://assets/graphics/fireguy-Sheet.png" id="1_jl78b"]
 [ext_resource type="Script" uid="uid://ddis0dckm0qfr" path="res://scripts/enemy.gd" id="1_uxutw"]
+[ext_resource type="Texture2D" uid="uid://qaq3x2jm0koo" path="res://assets/graphics/enemy_death-Sheet.png" id="2_wgbob"]
 [ext_resource type="Texture2D" uid="uid://dfps0qqdq4y3r" path="res://assets/graphics/snake-Sheet.png" id="3_88sqy"]
+[ext_resource type="Texture2D" uid="uid://b05f3vj6jx26k" path="res://assets/graphics/snake-SheetP.png" id="4_88sqy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtycq"]
+atlas = ExtResource("2_wgbob")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6skt"]
+atlas = ExtResource("2_wgbob")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_habo2"]
+atlas = ExtResource("2_wgbob")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6svwe"]
+atlas = ExtResource("2_wgbob")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_btx3p"]
 atlas = ExtResource("1_jl78b")
@@ -20,8 +38,33 @@ region = Rect2(0, 0, 64, 64)
 atlas = ExtResource("3_88sqy")
 region = Rect2(64, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rectw"]
+atlas = ExtResource("4_88sqy")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvrn5"]
+atlas = ExtResource("4_88sqy")
+region = Rect2(64, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_88sqy"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtycq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6skt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_habo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6svwe")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_btx3p")
@@ -30,7 +73,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_uxutw")
 }],
 "loop": true,
-"name": &"default",
+"name": &"fireguy",
 "speed": 3.0
 }, {
 "frames": [{
@@ -41,14 +84,34 @@ animations = [{
 "texture": SubResource("AtlasTexture_p6vme")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"greenguy",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rectw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvrn5")
+}],
+"loop": true,
+"name": &"purpleguy",
 "speed": 3.0
 }]
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1849383119]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88sqy"]
+size = Vector2(74, 55)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1849383119 groups=["enemy"]]
+collision_layer = 2
 script = ExtResource("1_uxutw")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=16427901]
-position = Vector2(33, 35)
+position = Vector2(38, 32)
 sprite_frames = SubResource("SpriteFrames_88sqy")
-animation = &"new_animation"
+animation = &"fireguy"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1835604919]
+position = Vector2(38, 35)
+shape = SubResource("RectangleShape2D_88sqy")
