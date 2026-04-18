@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bget13rl4mqc0"]
+
+[ext_resource type="Texture2D" uid="uid://1i2qqkwf4edy" path="res://assets/graphics/fireguy-Sheet.png" id="1_jl78b"]
+[ext_resource type="Script" uid="uid://ddis0dckm0qfr" path="res://scripts/enemy.gd" id="1_uxutw"]
+[ext_resource type="Texture2D" uid="uid://dfps0qqdq4y3r" path="res://assets/graphics/snake-Sheet.png" id="3_88sqy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btx3p"]
+atlas = ExtResource("1_jl78b")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxutw"]
+atlas = ExtResource("1_jl78b")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgbob"]
+atlas = ExtResource("3_88sqy")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6vme"]
+atlas = ExtResource("3_88sqy")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_88sqy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btx3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxutw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgbob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6vme")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 3.0
+}]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1849383119]
+script = ExtResource("1_uxutw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=16427901]
+position = Vector2(33, 35)
+sprite_frames = SubResource("SpriteFrames_88sqy")
+animation = &"new_animation"

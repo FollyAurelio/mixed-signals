@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bro4x5bb8sx7n"]
 
 [ext_resource type="Texture2D" uid="uid://dqrwaxiyulfjw" path="res://assets/graphics/bot-Sheet.png" id="1_5urir"]
+[ext_resource type="Script" uid="uid://c3cpnmoqcbai0" path="res://scripts/player.gd" id="1_sf2tj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sf2tj"]
 atlas = ExtResource("1_5urir")
@@ -100,19 +101,12 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5urir"]
-size = Vector2(73, 59)
-
-[node name="Player" type="Area2D" unique_id=585131946]
-position = Vector2(2, -4)
+[node name="Player" type="CharacterBody2D" unique_id=1419232070]
+script = ExtResource("1_sf2tj")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1808145420]
 position = Vector2(34, 35)
 sprite_frames = SubResource("SpriteFrames_sh265")
-animation = &"idle_2"
-frame_progress = 0.21454109
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1595290144]
-position = Vector2(35.5, 33.5)
-shape = SubResource("RectangleShape2D_5urir")
+animation = &"idle_4"
+frame_progress = 0.015239776
