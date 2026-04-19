@@ -4,6 +4,7 @@ signal update_world
 
 var beam_shot = false
 var health = 4
+var fuel = 100.0
 @export var world: Node2D
 
 # Called when the node enters the scene tree for the first time.
@@ -31,22 +32,26 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("move_right"):
 			direction.x = 1
 			update_world.emit()
+			fuel -= 0.5
 		elif Input.is_action_just_pressed("move_left"):
 			direction.x = -1
 			update_world.emit()
+			fuel -= 0.5
 		elif Input.is_action_just_pressed("move_down"):
 			direction.y = 1
 			update_world.emit()
+			fuel -= 0.5
 		elif Input.is_action_just_pressed("move_up"):
 			direction.y = -1
 			update_world.emit()
-		
+			fuel -= 0.5
 		elif Input.is_action_just_pressed("shoot_right"):
 			$LaserBeam.show()
 			beam_shot = true
 			$LaserBeam.get_node("CollisionShape2D").disabled = false
 			$LaserBeam.position = Vector2(0,0)
 			$LaserBeam.velocity = Vector2(1.0, 0.0)
+			fuel -= 1.0
 			
 		elif Input.is_action_just_pressed("shoot_left"):
 			$LaserBeam.show()	
@@ -54,6 +59,7 @@ func _physics_process(delta: float) -> void:
 			$LaserBeam.get_node("CollisionShape2D").disabled = false
 			$LaserBeam.position = Vector2(0,0)
 			$LaserBeam.velocity = Vector2(-1.0, 0.0)
+			fuel -= 1.0
 			
 			
 		elif Input.is_action_just_pressed("shoot_up"):
@@ -62,7 +68,7 @@ func _physics_process(delta: float) -> void:
 			$LaserBeam.get_node("CollisionShape2D").disabled = false
 			$LaserBeam.position = Vector2(0,0)
 			$LaserBeam.velocity = Vector2(0.0, -1.0)
-			
+			fuel -= 1.0
 		
 		elif Input.is_action_just_pressed("shoot_down"):
 			$LaserBeam.show()	
@@ -70,6 +76,7 @@ func _physics_process(delta: float) -> void:
 			$LaserBeam.get_node("CollisionShape2D").disabled = false
 			$LaserBeam.position = Vector2(0,0)
 			$LaserBeam.velocity = Vector2(0.0, 1.0)
+			fuel -= 1.0
 		
 		elif Input.is_action_just_pressed("dig"):
 			dig()
@@ -78,12 +85,15 @@ func _physics_process(delta: float) -> void:
 		var target = position + direction * 64
 		if can_move_to(target):
 			position = target
+			
+	update_fuel()
 
 func dig() -> void:
 	var layer2 = world.get_node("Layer2")
 	var tile_coords = layer2.local_to_map(position)
 	var tile = layer2.get_cell_atlas_coords(tile_coords)
 	if tile == Vector2i(4,1):
+		fuel -= 5.0
 		layer2.set_cell(tile_coords, 0, Vector2i(5, 1))
 	
 func flash():
@@ -98,7 +108,7 @@ func handle_health_animation() -> void:
 	$AnimatedSprite2D.animation = "idle_" + str(health)
 
 func handle_game_over() -> void:
-	#Do some hub stuff probably
+	$"../HUD/GameOver".show()
 	$AnimatedSprite2D.animation = "death"
 	await $AnimatedSprite2D.animation_finished
 	hide()
@@ -111,3 +121,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		handle_health_animation()
 		if health <= 0:
 			handle_game_over()
+
+func update_fuel() -> void:
+	$"../HUD/Fuel".text = "FUEL : " + str(fuel) + "%"

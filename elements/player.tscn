@@ -140,12 +140,13 @@ animations = [{
 size = Vector2(33, 37)
 
 [node name="Player" type="CharacterBody2D" unique_id=1419232070]
+position = Vector2(2, 1)
 collision_layer = 4
 script = ExtResource("1_sf2tj")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1808145420]
-position = Vector2(34, 35)
+position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_sh265")
 animation = &"death"
 

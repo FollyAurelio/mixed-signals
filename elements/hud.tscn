@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://d0wfoapoffvml"]
+
+[ext_resource type="FontFile" uid="uid://dcarlpuyyb2m8" path="res://assets/graphics/Kenney Mini Square.ttf" id="1_7wfh2"]
+
+[sub_resource type="GDScript" id="GDScript_otv8m"]
+script/source = "extends CanvasLayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_player_update_fuel() -> void:
+	$Fuel.text
+"
+
+[sub_resource type="GDScript" id="GDScript_22ypy"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="HUD" type="CanvasLayer" unique_id=375026568]
+script = SubResource("GDScript_otv8m")
+
+[node name="Fuel" type="Label" parent="." unique_id=614940253]
+offset_left = 256.0
+offset_top = 448.0
+offset_right = 506.0
+offset_bottom = 512.0
+theme_override_fonts/font = ExtResource("1_7wfh2")
+theme_override_font_sizes/font_size = 39
+text = "FUEL : 100.0%"
+script = SubResource("GDScript_22ypy")
+
+[node name="GameOver" type="Label" parent="." unique_id=261428040]
+offset_left = 128.0
+offset_top = 192.0
+offset_right = 384.0
+offset_bottom = 256.0
+theme_override_fonts/font = ExtResource("1_7wfh2")
+theme_override_font_sizes/font_size = 32
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1

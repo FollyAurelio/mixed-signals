@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dlq61x7fect4r" path="res://assets/graphics/lazerbeam1png.png" id="2_l3aic"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47jfe"]
-size = Vector2(29, 66)
+size = Vector2(52, 53)
 
 [node name="LaserBeam" type="Area2D" unique_id=564015786]
 collision_mask = 3
@@ -12,12 +12,12 @@ script = ExtResource("1_l3aic")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2105869921]
-position = Vector2(26.970997, 28.5)
+position = Vector2(32, 32)
 scale = Vector2(1, 0.999)
 texture = ExtResource("2_l3aic")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=960585091]
-position = Vector2(19.5, 27)
+position = Vector2(31, 33.5)
 shape = SubResource("RectangleShape2D_47jfe")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2117659678]
