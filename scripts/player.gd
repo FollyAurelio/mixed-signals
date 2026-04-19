@@ -74,9 +74,6 @@ func _physics_process(delta: float) -> void:
 		elif Input.is_action_just_pressed("dig"):
 			dig()
 		
-		
-		
-
 	if direction != Vector2.ZERO:
 		var target = position + direction * 64
 		if can_move_to(target):

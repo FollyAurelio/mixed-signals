@@ -12,6 +12,7 @@
 [node name="Camera2D" type="Camera2D" parent="World" unique_id=977987597]
 position = Vector2(256, 256)
 position_smoothing_enabled = true
+position_smoothing_speed = 8.0
 script = ExtResource("4_jyhfs")
 
 [node name="Player" parent="." unique_id=585131946 node_paths=PackedStringArray("world") instance=ExtResource("2_sugp2")]

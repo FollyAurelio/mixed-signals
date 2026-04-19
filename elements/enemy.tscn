@@ -110,7 +110,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=16427901]
 position = Vector2(38, 32)
 sprite_frames = SubResource("SpriteFrames_88sqy")
-animation = &"fireguy"
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1835604919]
 position = Vector2(38, 35)
