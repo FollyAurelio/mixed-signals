@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dwf0gbrqdrupj"]
+
+[ext_resource type="Script" uid="uid://d1uwwdtipshlo" path="res://scripts/mineral.gd" id="1_uomu0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8oq2o"]
+size = Vector2(64, 64)
+
+[node name="Mineral" type="Area2D" unique_id=1693869387 groups=["mineral"]]
+collision_layer = 8
+script = ExtResource("1_uomu0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=277963499]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_8oq2o")

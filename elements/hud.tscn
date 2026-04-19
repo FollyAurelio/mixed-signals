@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://d0wfoapoffvml"]
 
 [ext_resource type="FontFile" uid="uid://dcarlpuyyb2m8" path="res://assets/graphics/Kenney Mini Square.ttf" id="1_7wfh2"]
+[ext_resource type="FontFile" uid="uid://bxjukpgluf33" path="res://assets/graphics/Kenney Blocks.ttf" id="1_22ypy"]
+[ext_resource type="Script" uid="uid://b4nxak2614ama" path="res://scripts/fadeout_text.gd" id="3_aln00"]
 
 [sub_resource type="GDScript" id="GDScript_otv8m"]
 script/source = "extends CanvasLayer
@@ -37,6 +39,24 @@ func _process(delta: float) -> void:
 [node name="HUD" type="CanvasLayer" unique_id=375026568]
 script = SubResource("GDScript_otv8m")
 
+[node name="Menu" type="CanvasLayer" parent="." unique_id=1365436034]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Menu" unique_id=1674715720]
+offset_right = 512.0
+offset_bottom = 512.0
+color = Color(0, 0, 0, 1)
+
+[node name="MainMenuHead" type="Label" parent="Menu" unique_id=1831826148]
+offset_left = 128.0
+offset_right = 384.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("1_22ypy")
+theme_override_font_sizes/font_size = 48
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Fuel" type="Label" parent="." unique_id=614940253]
 offset_left = 256.0
 offset_top = 448.0
@@ -57,3 +77,15 @@ theme_override_font_sizes/font_size = 32
 text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FadeoutText" type="Label" parent="." unique_id=1052524100]
+anchors_preset = -1
+offset_left = 128.0
+offset_top = 64.0
+offset_right = 384.0
+offset_bottom = 128.0
+theme_override_fonts/font = ExtResource("1_7wfh2")
+text = "asdfafd"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_aln00")

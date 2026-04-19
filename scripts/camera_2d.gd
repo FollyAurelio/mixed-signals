@@ -8,6 +8,8 @@ func _ready() -> void:
 	screen_coords = get_viewport_rect().size
 	player = get_node("../../Player")
 	
+func start() -> void:
+	position = Vector2(256, 256)
 
 
 

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b64qwuwde7qkn"]
+
+[ext_resource type="Script" uid="uid://ctfh4ywfoysb0" path="res://scripts/mineral_marker.gd" id="1_twvcu"]
+
+[node name="MineralMarker" type="Marker2D" unique_id=189524696]
+script = ExtResource("1_twvcu")

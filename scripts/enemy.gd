@@ -3,13 +3,20 @@ extends CharacterBody2D
 var randomer = RandomNumberGenerator.new()
 var screen_coords
 
+var start_position: Vector2
+
+	
 func _ready() -> void:
+	start_position = position
+	screen_coords = get_viewport_rect().size
+
+func start() -> void:
 	get_parent().get_parent().get_node("Player").update_world.connect(_on_player_update_world)
 	var mob_types = Array($AnimatedSprite2D.sprite_frames.get_animation_names())
 	mob_types.remove_at(0)
 	$AnimatedSprite2D.animation = mob_types.pick_random()
-	screen_coords = get_viewport_rect().size
 	$AnimatedSprite2D.play() # Replace with function body.
+	position = start_position
 
 
 
