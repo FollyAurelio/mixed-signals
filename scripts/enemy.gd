@@ -4,6 +4,7 @@ var randomer = RandomNumberGenerator.new()
 var screen_coords
 
 func _ready() -> void:
+	get_parent().get_parent().get_node("Player").update_world.connect(_on_player_update_world)
 	var mob_types = Array($AnimatedSprite2D.sprite_frames.get_animation_names())
 	mob_types.remove_at(0)
 	$AnimatedSprite2D.animation = mob_types.pick_random()
