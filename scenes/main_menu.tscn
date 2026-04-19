@@ -23,10 +23,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PlayButton" type="Button" parent="." unique_id=88050381]
-offset_left = 192.0
-offset_top = 256.0
-offset_right = 320.0
-offset_bottom = 320.0
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 192.0
+offset_bottom = 384.0
 theme_override_fonts/font = ExtResource("3_bqqt6")
 text = "Play"
 
@@ -39,23 +39,34 @@ offset_bottom = 384.0
 theme_override_fonts/font = ExtResource("3_bqqt6")
 text = "Back"
 
-[node name="ControlsButton" type="Button" parent="." unique_id=135481605]
+[node name="ControlsExplanation" type="Label" parent="." unique_id=273041085]
 offset_left = 64.0
-offset_top = 384.0
-offset_right = 192.0
-offset_bottom = 448.0
+offset_top = 64.0
+offset_right = 430.0
+offset_bottom = 320.0
+theme_override_fonts/font = ExtResource("3_bqqt6")
+text = "Mine rare minerals and aim for a high score!
+
+Movement : Arrow keys 
+
+Move camera : I J K L Keys
+
+Shoot in 4 directions : W A S D Keys
+
+Dig for minerals : Spacebar
+
+Signal : Z Key
+
+Open menu : M Key"
+
+[node name="ControlsButton" type="Button" parent="." unique_id=135481605]
+offset_left = 320.0
+offset_top = 320.0
+offset_right = 448.0
+offset_bottom = 384.0
 theme_override_fonts/font = ExtResource("3_bqqt6")
 text = "Controls"
-
-[node name="StoryButton" type="Button" parent="." unique_id=1391452175]
-offset_left = 320.0
-offset_top = 384.0
-offset_right = 448.0
-offset_bottom = 448.0
-theme_override_fonts/font = ExtResource("3_bqqt6")
-text = "Story"
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="ControlsButton" to="." method="_on_controls_button_pressed"]
-[connection signal="pressed" from="StoryButton" to="." method="_on_story_button_pressed"]

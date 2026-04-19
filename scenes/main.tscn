@@ -49,8 +49,8 @@ position = Vector2(576, 0)
 [node name="MineSpawner" type="Node2D" parent="." unique_id=1314364499]
 
 [node name="MineralMarker" parent="MineSpawner" unique_id=189524696 instance=ExtResource("6_tipki")]
-position = Vector2(128, 0)
-type = "mine"
+position = Vector2(64, -448)
+type = "gold"
 
 [node name="MainMenu" parent="." unique_id=1424642444 instance=ExtResource("6_tefeu")]
 visible = false

@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://dcarlpuyyb2m8" path="res://assets/graphics/Kenney Mini Square.ttf" id="1_7wfh2"]
 [ext_resource type="FontFile" uid="uid://bxjukpgluf33" path="res://assets/graphics/Kenney Blocks.ttf" id="1_22ypy"]
+[ext_resource type="Texture2D" uid="uid://lotnoxyohc8l" path="res://assets/graphics/pause_helpers-Sheet.png" id="3_28j6r"]
 [ext_resource type="Script" uid="uid://b4nxak2614ama" path="res://scripts/fadeout_text.gd" id="3_aln00"]
 
 [sub_resource type="GDScript" id="GDScript_otv8m"]
@@ -21,6 +22,105 @@ func _process(delta: float) -> void:
 func _on_player_update_fuel() -> void:
 	$Fuel.text
 "
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8vj7"]
+atlas = ExtResource("3_28j6r")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5pbk"]
+atlas = ExtResource("3_28j6r")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxnq6"]
+atlas = ExtResource("3_28j6r")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dj4y"]
+atlas = ExtResource("3_28j6r")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_algn8"]
+atlas = ExtResource("3_28j6r")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qi57"]
+atlas = ExtResource("3_28j6r")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bo7ni"]
+atlas = ExtResource("3_28j6r")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ub112"]
+atlas = ExtResource("3_28j6r")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fuhgv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8vj7")
+}],
+"loop": true,
+"name": &"bronze",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5pbk")
+}],
+"loop": true,
+"name": &"coal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxnq6")
+}],
+"loop": true,
+"name": &"diamond",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dj4y")
+}],
+"loop": true,
+"name": &"gold",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_algn8")
+}],
+"loop": true,
+"name": &"platinum",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qi57")
+}],
+"loop": true,
+"name": &"ruby",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bo7ni")
+}],
+"loop": true,
+"name": &"sapphire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ub112")
+}],
+"loop": true,
+"name": &"silver",
+"speed": 5.0
+}]
 
 [sub_resource type="GDScript" id="GDScript_22ypy"]
 script/source = "extends Label
@@ -49,13 +149,135 @@ color = Color(0, 0, 0, 1)
 
 [node name="MainMenuHead" type="Label" parent="Menu" unique_id=1831826148]
 offset_left = 128.0
+offset_top = 64.0
 offset_right = 384.0
-offset_bottom = 72.0
+offset_bottom = 136.0
 theme_override_fonts/font = ExtResource("1_22ypy")
 theme_override_font_sizes/font_size = 48
 text = "Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ExitButton" type="Button" parent="Menu" unique_id=86235934]
+offset_top = 448.0
+offset_right = 128.0
+offset_bottom = 512.0
+theme_override_fonts/font = ExtResource("1_7wfh2")
+text = "Exit Game"
+
+[node name="MToReturnLabel" type="Label" parent="Menu" unique_id=240424721]
+offset_left = 128.0
+offset_top = 384.0
+offset_right = 384.0
+offset_bottom = 448.0
+theme_override_fonts/font = ExtResource("1_7wfh2")
+text = "Press M to close menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="coal" type="AnimatedSprite2D" parent="Menu" unique_id=331323545]
+position = Vector2(192, 320)
+sprite_frames = SubResource("SpriteFrames_fuhgv")
+animation = &"gold"
+
+[node name="bronze" type="AnimatedSprite2D" parent="Menu" unique_id=1324794657]
+position = Vector2(64, 320)
+sprite_frames = SubResource("SpriteFrames_fuhgv")
+animation = &"silver"
+
+[node name="sapphire" type="AnimatedSprite2D" parent="Menu" unique_id=635093987]
+position = Vector2(64, 192)
+sprite_frames = SubResource("SpriteFrames_fuhgv")
+animation = &"coal"
+
+[node name="ruby" type="AnimatedSprite2D" parent="Menu" unique_id=692792024]
+position = Vector2(192, 192)
+sprite_frames = SubResource("SpriteFrames_fuhgv")
+animation = &"bronze"
+
+[node name="silver" type="AnimatedSprite2D" parent="Menu" unique_id=1149709176]
+position = Vector2(320, 192)
+sprite_frames = SubResource("SpriteFrames_fuhgv")
+animation = &"sapphire"
+
+[node name="gold" type="AnimatedSprite2D" parent="Menu" unique_id=1759350574]
+position = Vector2(448, 192)
+sprite_frames = SubResource("SpriteFrames_fuhgv")
+animation = &"ruby"
+
+[node name="diamond" type="AnimatedSprite2D" parent="Menu" unique_id=399592027]
+position = Vector2(320, 320)
+sprite_frames = SubResource("SpriteFrames_fuhgv")
+animation = &"diamond"
+
+[node name="platinum" type="AnimatedSprite2D" parent="Menu" unique_id=455376578]
+position = Vector2(448, 320)
+sprite_frames = SubResource("SpriteFrames_fuhgv")
+animation = &"platinum"
+
+[node name="Button" type="Button" parent="Menu" unique_id=378465581]
+offset_left = 32.0
+offset_top = 224.0
+offset_right = 96.0
+offset_bottom = 256.0
+theme_override_fonts/font = ExtResource("1_7wfh2")
+text = "Coal"
+
+[node name="Button2" type="Button" parent="Menu" unique_id=838922059]
+offset_left = 160.0
+offset_top = 224.0
+offset_right = 224.0
+offset_bottom = 256.0
+theme_override_fonts/font = ExtResource("1_7wfh2")
+text = "Bronze"
+
+[node name="Button3" type="Button" parent="Menu" unique_id=1168658866]
+offset_left = 288.0
+offset_top = 224.0
+offset_right = 352.0
+offset_bottom = 256.0
+theme_override_fonts/font = ExtResource("1_7wfh2")
+text = "Sapphire"
+
+[node name="Button4" type="Button" parent="Menu" unique_id=420465670]
+offset_left = 416.0
+offset_top = 224.0
+offset_right = 480.0
+offset_bottom = 256.0
+theme_override_fonts/font = ExtResource("1_7wfh2")
+text = "Ruby"
+
+[node name="Button5" type="Button" parent="Menu" unique_id=1210819640]
+offset_left = 32.0
+offset_top = 352.0
+offset_right = 96.0
+offset_bottom = 384.0
+theme_override_fonts/font = ExtResource("1_7wfh2")
+text = "Silver"
+
+[node name="Button6" type="Button" parent="Menu" unique_id=319822494]
+offset_left = 160.0
+offset_top = 352.0
+offset_right = 224.0
+offset_bottom = 384.0
+theme_override_fonts/font = ExtResource("1_7wfh2")
+text = "Gold"
+
+[node name="Button7" type="Button" parent="Menu" unique_id=1358379711]
+offset_left = 288.0
+offset_top = 352.0
+offset_right = 352.0
+offset_bottom = 384.0
+theme_override_fonts/font = ExtResource("1_7wfh2")
+text = "Diamond"
+
+[node name="Button8" type="Button" parent="Menu" unique_id=1376579950]
+offset_left = 416.0
+offset_top = 352.0
+offset_right = 480.0
+offset_bottom = 384.0
+theme_override_fonts/font = ExtResource("1_7wfh2")
+text = "Platinum"
 
 [node name="Fuel" type="Label" parent="." unique_id=614940253]
 offset_left = 256.0
@@ -79,7 +301,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="FadeoutText" type="Label" parent="." unique_id=1052524100]
-anchors_preset = -1
 offset_left = 128.0
 offset_top = 64.0
 offset_right = 384.0
@@ -89,3 +310,12 @@ text = "asdfafd"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_aln00")
+
+[node name="Score" type="Label" parent="." unique_id=1790647848]
+offset_left = 352.0
+offset_right = 512.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("1_7wfh2")
+text = "Score : 0"
+horizontal_alignment = 1
+vertical_alignment = 1

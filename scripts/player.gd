@@ -6,8 +6,9 @@ signal game_over
 var beam_shot = false
 var health = 4
 var fuel = 100.0
-const fuel_value = {"platinum" : 100, "diamond" : 70, "gold" : 50, "silver" : 40, 
-					"ruby" : 30, "sapphire" :30, "bronze" : 25, "coal" : 20}
+var score = 0
+const fuel_value = {"platinum" : 50, "diamond" : 40, "gold" : 35, "silver" : 30, 
+					"ruby" : 30, "sapphire" :30, "bronze" : 25, "coal" : 10}
 var menu_open = false
 @export var world: Node2D
 
@@ -16,7 +17,7 @@ func _ready() -> void:
 	pass
 
 func start() -> void:
-	position = Vector2(0.0, 0.0)
+	position = Vector2(256.0, 256.0)
 	$AnimatedSprite2D.animation = "idle_4"
 	$AnimatedSprite2D.play() # Replace with function body.
 	$LaserBeam.hide()
@@ -24,6 +25,7 @@ func start() -> void:
 	beam_shot = false
 	health = 4
 	fuel = 100.0
+	score = 0
 	menu_open = false
 
 func can_move_to(target_pos: Vector2) -> bool:
@@ -108,6 +110,7 @@ func _physics_process(delta: float) -> void:
 			position = target
 			
 	update_fuel_display()
+	update_score_display()
 
 func dig() -> void:
 	var layer2 = world.get_node("Layer2")
@@ -168,6 +171,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func update_fuel_display() -> void:
 	$"../HUD/Fuel".text = "FUEL : " + str(fuel) + "%"
 	
+func update_score_display() -> void:
+	$"../HUD/Score".text = "SCORE : " + str(score)
 func scan() -> void:
 	var mineable = []
 	var enemies = []
@@ -185,11 +190,13 @@ func scan() -> void:
 
 func is_on_screen(node: Node2D) -> bool:
 	var screen_rect = get_viewport_rect()
-	var screen_pos = get_viewport().get_canvas_transform() * node.global_position
+	var screen_pos = get_viewport().get_canvas_transform() * (node.global_position + Vector2(32,32))
 	return screen_rect.has_point(screen_pos)
 
 func update_fuel(new_fuel : float) -> void:
 	fuel += new_fuel
+	if new_fuel > 0:
+		score += new_fuel
 	if fuel <= 0:
 		handle_game_over()
 	elif fuel > 100:
