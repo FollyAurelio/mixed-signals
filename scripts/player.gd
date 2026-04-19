@@ -4,6 +4,7 @@ signal update_world
 
 var beam_shot = false
 var health = 4
+@export var world: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -70,6 +71,9 @@ func _physics_process(delta: float) -> void:
 			$LaserBeam.position = Vector2(0,0)
 			$LaserBeam.velocity = Vector2(0.0, 1.0)
 		
+		elif Input.is_action_just_pressed("dig"):
+			dig()
+		
 		
 		
 
@@ -77,7 +81,14 @@ func _physics_process(delta: float) -> void:
 		var target = position + direction * 64
 		if can_move_to(target):
 			position = target
-			
+
+func dig() -> void:
+	var layer2 = world.get_node("Layer2")
+	var tile_coords = layer2.local_to_map(position)
+	var tile = layer2.get_cell_atlas_coords(tile_coords)
+	if tile == Vector2i(4,1):
+		layer2.set_cell(tile_coords, 0, Vector2i(5, 1))
+	
 func flash():
 	$AnimatedSprite2D.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
