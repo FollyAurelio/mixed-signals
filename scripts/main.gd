@@ -41,11 +41,11 @@ func clean_game_over() -> void:
 	for enemy in enemies:
 		if enemy.is_in_group("enemy"):	
 			enemy.queue_free()
-	var mines = $MineSpawner.get_children()
-	for mine in mines:
-		if mine.is_in_group("mineral"):
-			mine.dug = false
-	
+	var layer2 = $World.get_node("Layer2")
+	for coords in layer2.get_used_cells():
+		if layer2.get_cell_atlas_coords(coords) == Vector2i(5, 1):
+			layer2.set_cell(coords, 0, Vector2i(4, 1))
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

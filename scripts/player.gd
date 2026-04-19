@@ -98,6 +98,9 @@ func _physics_process(delta: float) -> void:
 		elif Input.is_action_just_pressed("menu") and menu_open:
 			menu_open = false
 			$"../HUD/Menu".hide()
+			
+		elif Input.is_action_just_pressed("signal"):
+			scan()
 		
 	if direction != Vector2.ZERO:
 		var target = position + direction * 64
@@ -164,6 +167,26 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func update_fuel_display() -> void:
 	$"../HUD/Fuel".text = "FUEL : " + str(fuel) + "%"
+	
+func scan() -> void:
+	var mineable = []
+	var enemies = []
+	
+	for node in get_tree().get_nodes_in_group("mineral"):
+		if is_on_screen(node) and not node.dug:
+			mineable.append(node)
+	
+	for node in get_tree().get_nodes_in_group("enemy"):
+		if is_on_screen(node):
+			enemies.append(node)
+	
+	print(mineable)
+	print(enemies)
+
+func is_on_screen(node: Node2D) -> bool:
+	var screen_rect = get_viewport_rect()
+	var screen_pos = get_viewport().get_canvas_transform() * node.global_position
+	return screen_rect.has_point(screen_pos)
 
 func update_fuel(new_fuel : float) -> void:
 	fuel += new_fuel
